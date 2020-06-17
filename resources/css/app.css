@@ -1,0 +1,32 @@
+.tasks-list {
+    width: 80%;
+    margin-left: 10%;
+    display: flex;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.tasks-pagination ul {
+    margin-top: 2em;
+    flex-direction: row;
+    justify-content: center;
+}
+
+.header-align-center {
+    text-align: center;
+}
+
+.classic-form {
+    width: 50%;
+    margin-left: 25%;
+}
+
+#staticContent {
+    margin-left: 1em;
+    padding-left: 0.5em;
+    width: 80%;
+}
+
+.form-control-plaintext {
+    padding-left: 0.5em;
+}

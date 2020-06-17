@@ -6,6 +6,7 @@
 	<meta charset="utf-8">
 	<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
 	<link rel="stylesheet" href="<?php echo __ROOT__ . 'resources/libs/bootstrap/css/bootstrap.css' ?>" />
+	<link rel="stylesheet" href="<?php echo __ROOT__ . 'resources/css/app.css' ?>" />
 </head>
 <body>
 <nav class="navbar navbar-expand-md navbar-dark fixed-top bg-dark">
@@ -15,13 +16,13 @@
 	</button>
 	<div class="collapse navbar-collapse" id="navbarSupportedContent">
 		<ul class="navbar-nav mr-auto">
-			<li class="nav-item active">
+			<li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/') echo 'active' ?>">
 				<a class="nav-link" href="<?php echo __ROOT__ ?>">Home <span class="sr-only">(current)</span></a>
 			</li>
-            <li class="nav-item">
-                <a class="nav-link" href="<?php echo __ROOT__ . 'create'; ?>">Create task</a>
+            <li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/task/create') echo 'active' ?>">
+                <a class="nav-link" href="<?php echo __ROOT__ . 'task/create'; ?>">Create task</a>
             </li>
-			<li class="nav-item">
+			<li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/login') echo 'active' ?>">
 				<a class="nav-link" href="<?php echo __ROOT__ . 'login'; ?>">Sign in</a>
 			</li>
 		</ul>
