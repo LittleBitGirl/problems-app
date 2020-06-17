@@ -1,4 +1,6 @@
-<?php defined('__ROOT__') OR exit('No direct script access allowed'); ?>
+<?php defined('__ROOT__') OR exit('No direct script access allowed');
+session_start();
+?>
 <!DOCTYPE html>
 <html lang="en">
 <head>
@@ -22,10 +24,26 @@
             <li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/task/create') echo 'active' ?>">
                 <a class="nav-link" href="<?php echo __ROOT__ . 'task/create'; ?>">Create task</a>
             </li>
-			<li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/login') echo 'active' ?>">
-				<a class="nav-link" href="<?php echo __ROOT__ . 'login'; ?>">Sign in</a>
-			</li>
+            <?php if(isset($_SESSION['USER_ID'])){?>
+                <li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/logout') echo 'active' ?>">
+                    <a class="nav-link" href="<?php echo __ROOT__ . 'logout'; ?>">Sign out</a>
+                </li>
+            <?php } else {?>
+                <li class="nav-item <?php if($_SERVER['REQUEST_URI'] == '/login') echo 'active' ?>">
+                    <a class="nav-link" href="<?php echo __ROOT__ . 'login'; ?>">Sign in</a>
+                </li>
+            <?php } ?>
 		</ul>
 	</div>
 </nav>
 <main role="main">
+    <?php
+	if(isset($_GET['message'])){
+		if($_GET['message'] == 'success'){
+			echo "<script type='text/javascript'>alert('Операция прошла успешно!');</script>";
+		} else if($_GET['message'] == 'validation_error'){
+			echo "<script type='text/javascript'>alert('Введенные данные неверны!');</script>";
+		}
+
+	}
+    ?>

@@ -9,7 +9,7 @@
     <div class="form-group row">
         <label for="staticLogin" class="col-sm-2 col-form-label">Login</label>
         <div class="col-sm-10">
-            <input name="email" type="text" class="form-control-plaintext" required id="staticLogin" placeholder="Frodo_Baggins">
+            <input name="login" type="text" class="form-control-plaintext" required id="staticLogin" placeholder="Frodo_Baggins">
         </div>
     </div>
     <div class="form-group row">

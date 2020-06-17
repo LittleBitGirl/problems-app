@@ -7,7 +7,7 @@ if (isset($_GET["page"])) {
 $sortVars = [
         'email' => 'E-mail',
         'user_name' => 'User Name',
-        'isDone' => 'Status'
+        'done' => 'Status'
 ];
 if (isset( $_GET["sort"])){
     $sort = $_GET["sort"];
@@ -23,6 +23,14 @@ if (isset( $_GET["sort"])){
                tabindex="-1"><?php echo $sortValue ?></a>
         </li>
         <?php } ?>
+        <li class="page-item <?php if($_GET['order'] == 'DESC') echo 'disabled'?>">
+            <a class="page-link" href="<?php echo '?sort='. ($_GET['sort'] ?? 'created_at') .'&page='. ($_GET['page'] ?? 1).'&order=DESC' ?>"
+               tabindex="-1"><b> &#9660;</b></a>
+        </li>
+        <li class="page-item <?php if($_GET['order'] == 'ASC' || !isset($_GET['order'])) echo 'disabled'?>">
+            <a class="page-link" href="<?php echo '?sort='. ($_GET['sort'] ?? 'created_at') .'&page='. ($_GET['page'] ?? 1).'&order=ASC' ?>"
+               tabindex="-1"><b>&#9650;</b></a>
+        </li>
     </ul>
 </nav>
 <div class="row tasks-list center-block">
@@ -35,12 +43,12 @@ if (isset( $_GET["sort"])){
 <nav aria-label="..." class="tasks-pagination">
     <ul class="pagination pagination-lg">
 		<?php
-        $pagination = $this->data['Validator'];
+        $pagination = $this->data['paginator'];
 		for ($page = 1;
 			 $page <= $pagination['totalPages'];
 			 $page++) { ?>
             <li class="page-item <?php if($page == $_GET['page']) echo 'disabled'?>">
-                <a class="page-link" href="<?php echo '?page=' . $page .'&sort='. ($_GET['sort'] ?? 'created_at')?>"
+                <a class="page-link" href="<?php echo '?page=' . $page .'&sort='. ($_GET['sort'] ?? 'created_at').'&order='. ($_GET['order'] ?? 'ASC')?>"
                    tabindex="-1"><?php echo $page ?></a>
             </li>
 		<?php } ?>

@@ -7,25 +7,26 @@ class AdminController extends Controller {
 		$this->view->render('login');
 	}
 
-	public function create()
+	public function logout()
 	{
-		$this->view->title = __SITE_NAME__ . ' - Create Task';
-		$this->view->render('tasks/create');
+		session_start();
+		unset($_SESSION['USER_ID']);
+		header('Location: '.__ROOT__.'login');
 	}
 
-	public function store()
+	public function authorize()
 	{
-		$task['email'] = htmlspecialchars($_POST['email']);
-		$task['user_name'] = htmlspecialchars($_POST['user_name']);
-		$task['content'] = htmlspecialchars($_POST['content']);
-		if ((new Validator())->validateTask($task)) {
-			$taskObject = new Task();
-			$result = $taskObject->save($task);
+		$login['login'] = htmlspecialchars($_POST['login']);
+		$login['password'] = md5(htmlspecialchars($_POST['password']));
+		$admin = (new Validator())->verifyLogin($login);
+		if($admin != false){
+			session_start();
+			$_SESSION['USER_ID'] = $admin['id'];
 			header('Location: '.__ROOT__);
-			return $result;
 		} else {
-			return 'validation error';
+			header('Location: '.__ROOT__.'login?message=validation_error');
 		}
 	}
+
 
 }

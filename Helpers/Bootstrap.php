@@ -11,7 +11,11 @@ class Bootstrap {
 			'/task/create' => ['TaskController' => 'create'],
 			'/task/store' => ['TaskController' => 'store'],
 			'/task/edit' => ['TaskController' => 'edit'],
+			'/task/markAs' => ['TaskController' => 'markAsDone'],
+			'/task/update' => ['TaskController' => 'update'],
 			'/login' => ['AdminController' => 'login'],
+			'/logout' => ['AdminController' => 'logout'],
+			'/admin/login' => ['AdminController' => 'authorize'],
 		];
 		$flag = FALSE;
 		if (isset ($_GET['path'])) {

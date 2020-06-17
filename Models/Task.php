@@ -7,7 +7,7 @@ class Task extends Model {
 	protected $_order_by = 'created_at';
 
 
-    public function getAllTasks($page, $sort = 'created_at')
+    public function getAllTasks($page, $sort = 'created_at', $order = 'ASC')
 	{
 		$page  = (isset($page) && $page < 100000)? (int) $page : 1;
 		$perPage = 3;
@@ -18,7 +18,7 @@ class Task extends Model {
 		$next = $page+1;
 		$prev = $page-1;
 
-		$result = R::findAll('tasks', ' ORDER BY '. $sort .' ASC LIMIT '.$start.', '.$perPage);
+		$result = R::findAll('tasks', ' ORDER BY '. $sort .' '.$order.' LIMIT '.$start.', '.$perPage);
 		$paginatoinInfo = [
 			"page"          => $page,
 			"start"         => $start,
@@ -29,8 +29,7 @@ class Task extends Model {
 
 		$res = [];
 		$res['tasks'] = (count($result) > 0) ? $result : false;
-		$res['Validator'] = $paginatoinInfo;
-
+		$res['paginator'] = $paginatoinInfo;
 		return $res;
 	}
 }
