@@ -8,7 +8,7 @@ class TaskController extends Controller {
 			$_GET['page'] ?? 1, $_GET['sort'] ?? 'created_at',
 			$_GET['order'] ?? 'ASC'
 		);
-		$this->view->render('Home');
+		$this->view->render('home');
 	}
 
 	public function create()
